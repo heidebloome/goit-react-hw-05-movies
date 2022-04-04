@@ -7,12 +7,12 @@ export const MoviesList = ({movies}) => {
     return (
         <List>
             {movies.map(el => {
-                return (<MovieItem movie={el}/>)
+                return (<MovieItem key={el.id} movie={el}/>)
             })}
         </List>
   )
 }
 
 MoviesList.propTypes = {
-    movies: propTypes.array.isRequired
+    movies: propTypes.arrayOf(propTypes.object).isRequired
 }
