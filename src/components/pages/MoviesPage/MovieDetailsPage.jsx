@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
+import { Container } from 'components/common/Container.styled';
 import { Button } from 'components/common/Button.styled';
-import { Title } from '../HomePage/HomePage.styled';
-
-import { Wrapper, Content, Img, List } from './MovieDetailsPage.styled';
+import { StyledLink, Wrapper, Content, Title, SubTitle, Img, List, Item } from './MovieDetailsPage.styled';
 
 import { ApiService } from 'services/api.service';
 const apiService = new ApiService();
@@ -21,39 +20,35 @@ export const MoviesDetailsPage = () => {
     });
   }, [movieId])
 
-  const onCastBtnClick = () => {
-    navigate('/movies/:movieId/cast')
-  }
-
-  const onReviesBtnClick = () => {
-    navigate('/movies/:movieId/reviews')
+  const onBtnClick = (page) => {
+    navigate(`/movies/${movieId}/${page}`);
   }
 
   return (
-    <>
-      <Button>Go back</Button>
+    <Container>
+      <StyledLink to='/'>&#8592; Go back</StyledLink>
       {movie && 
         <Wrapper>
-            <Img src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_path}`} alt="movie poster"/>
+          <Img src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_path}`} alt="movie poster"/>
           <Content>
             <Title>{movie.title}</Title>
-            <h3>Overview</h3>
+            <SubTitle>Overview</SubTitle>
             <p>{movie.overview}</p>
-            <h3>Genres</h3>
+            <SubTitle>Genres</SubTitle>
             <List>
               {movie.genres.map(el => {
                 return <li key={el.id}>{el.name}</li>
               })}
             </List>
-            <h3>Additional information</h3>
-            <List>
-              <li><Button onClick={onCastBtnClick}>Cast</Button></li>
-              <li><Button onClick={onReviesBtnClick}>Reviews</Button></li>
+            <SubTitle>Additional information</SubTitle>
+            <List btn ls>
+              <Item mr><Button onClick={() => onBtnClick('cast')}>Cast</Button></Item>
+              <Item mr><Button onClick={() => onBtnClick('reviews')}>Reviews</Button></Item>
             </List>
-          <Outlet/>
+            <Outlet/>
           </Content>
         </Wrapper>
       }
-      </>
+      </Container>
   )
 }

@@ -13,4 +13,9 @@ export class ApiService {
         const response = await axios.get(`${this._BASE_URL}movie/${id}?api_key=${this._API_KEY}`);
         return response;
     }
+
+    async fetchMovieCast(id) {
+        const response = await axios.get(`${this._BASE_URL}movie/${id}/credits?api_key=${this._API_KEY}`);
+        return response;
+    }
 }

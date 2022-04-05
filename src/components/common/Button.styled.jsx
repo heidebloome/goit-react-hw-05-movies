@@ -8,8 +8,6 @@ export const Button = styled.button`
   height: 35px;
   margin-bottom: 10px;
   margin-top: 10px;
-  // margin-right: auto;
-  // margin-left: auto;
   font-size: 15px;
   font-weight: bold;
   color: ${props => props.theme.colors.white};
