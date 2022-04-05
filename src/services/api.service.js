@@ -18,4 +18,14 @@ export class ApiService {
         const response = await axios.get(`${this._BASE_URL}movie/${id}/credits?api_key=${this._API_KEY}`);
         return response;
     }
+
+    async fetchMovieReviews(id) {
+        const response = await axios.get(`${this._BASE_URL}movie/${id}/reviews?api_key=${this._API_KEY}`);
+        return response;
+    }
+
+    async fetchMoviesByName(searchQuery) {
+        const response = await axios.get(`${this._BASE_URL}search/movie?api_key=${this._API_KEY}&query=${searchQuery}`);
+        return response;
+    }
 }

@@ -49,7 +49,7 @@ export const SubTitle = styled.h2`
 
 export const Img = styled.img`
     max-width: 300px;
-    max-height: 550px;
+    max-height: 525px;
     
     @media screen and (min-width: 945px) {
         max-width: 350px;

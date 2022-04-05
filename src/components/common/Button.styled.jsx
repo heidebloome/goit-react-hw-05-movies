@@ -6,8 +6,7 @@ export const Button = styled.button`
   justify-content: center;
   width: 150px;
   height: 35px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+
   font-size: 15px;
   font-weight: bold;
   color: ${props => props.theme.colors.white};
@@ -17,12 +16,14 @@ export const Button = styled.button`
   cursor: pointer;
   transition: border-color 250ms ease-in-out, background-color 250ms ease-in-out,
     transform 250ms ease-in-out;
-  &:hover,
-  &:focus-visible {
-    border-color: ${props => props.theme.colors.buttonHoverBackgroundColor};
-    background-color: ${props => props.theme.colors.buttonHoverBackgroundColor};
-  }
-  &:active {
-    transform: scale(0.9);
-  }
+  
+    &:hover,
+    &:focus-visible {
+      border-color: ${props => props.theme.colors.buttonHoverBackgroundColor};
+      background-color: ${props => props.theme.colors.buttonHoverBackgroundColor};
+    }
+    
+    &:active {
+      transform: scale(0.9);
+    }
 `;
