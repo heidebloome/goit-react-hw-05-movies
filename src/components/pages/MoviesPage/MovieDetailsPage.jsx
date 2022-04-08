@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams, useLocation } from 'react-router-dom';
-
 import { Container } from 'components/common/Container.styled';
 import { Button } from 'components/common/Button.styled';
 import { StyledLink, Wrapper, Content, Title, SubTitle, Img, List, Item } from './MovieDetailsPage.styled';
@@ -14,7 +13,9 @@ export const MoviesDetailsPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const goBackToLink = location.state.from.pathname + location.state.from.search;
+  const [goBackToLink] = useState(() => {
+    return location.state.from.pathname + location.state.from.search;
+  });
 
   useEffect(() => {
     apiService.fetchMovieDetails(movieId).then(info => {

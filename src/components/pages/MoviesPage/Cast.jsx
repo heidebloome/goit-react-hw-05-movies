@@ -10,6 +10,8 @@ export const Cast = () => {
     const [cast, setCast] = useState([]);
     const { movieId } = useParams();
 
+    console.log(movieId)
+
     useEffect(() => {
         apiService.fetchMovieCast(movieId).then(info => {
             setCast(info.data.cast);

@@ -7,7 +7,7 @@ import { ApiService } from 'services/api.service';
 const apiService = new ApiService();
 
 export const MoviesPage = () => {
-  const [list, setList] = useState(false);
+  const [list, setList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchParamsQuery = searchParams.get('query');
 
@@ -22,11 +22,14 @@ export const MoviesPage = () => {
 
   const showMovies = e => {
     e.preventDefault();
-    const query = e.currentTarget.elements.searchQuery.value.trim();
-    setSearchParams({ query });
-    apiService.fetchMoviesByName(query).then(info => {
-      setList(info.data.results);
-    })
+    const query = e.target.elements.searchQuery.value.trim();
+    e.target.reset();
+
+      setSearchParams({ query });
+      apiService.fetchMoviesByName(query).then(info => {
+        setList(info.data.results);
+      })
+
   }
 
   return (
@@ -40,7 +43,9 @@ export const MoviesPage = () => {
         />
         <Button type="submit">Search</Button>
       </Form>
-      {list && <MoviesList movies={list}/>}
+      {list.length === 0
+        ? <div>No movies yet...</div>  
+        : < MoviesList movies={list}/>}
       </>
   )
 }

@@ -1,9 +1,8 @@
 import React from 'react';
+import { Title } from './pages/HomePage/HomePage.styled';
 
 export const NotFound = () => {
   return (
-      <>
-          <p>NotFound</p>
-      </>
+          <Title>Woops. Looks like this page doesn't exist.</Title>
   )
 }
