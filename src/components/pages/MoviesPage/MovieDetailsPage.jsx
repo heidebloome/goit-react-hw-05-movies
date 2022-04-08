@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams, useLocation } from 'react-router-dom';
 
 import { Container } from 'components/common/Container.styled';
 import { Button } from 'components/common/Button.styled';
@@ -13,6 +13,8 @@ export const MoviesDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const goBackToLink = location.state.from.pathname + location.state.from.search;
 
   useEffect(() => {
     apiService.fetchMovieDetails(movieId).then(info => {
@@ -26,7 +28,7 @@ export const MoviesDetailsPage = () => {
 
   return (
     <Container>
-      <StyledLink to='/'>&#8592; Go back</StyledLink>
+      <StyledLink to={goBackToLink}>&#8592; Go back</StyledLink>
       {movie && 
         <Wrapper>
           <Img src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_path}`} alt="movie poster"/>

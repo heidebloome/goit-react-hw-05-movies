@@ -1,13 +1,14 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import propTypes from 'prop-types';
 
 import { Item, Text } from './MovieItem.styled';
 
 export const MovieItem = ({ movie }) => {
     const navigate = useNavigate();
+    const location = useLocation();
     
     const onMovieClick = (id) => {
-        navigate(`/movies/${id}`)
+        navigate(`/movies/${id}`, {state: {from: location}})
     }
     
     return (

@@ -37,8 +37,7 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h1`
-    margin-top: ${props => props.theme.spacing(5)};
-    margin-bottom: ${props => props.theme.spacing(5)};
+    margin: 0;
 
     font-size: 28px;
 `;
