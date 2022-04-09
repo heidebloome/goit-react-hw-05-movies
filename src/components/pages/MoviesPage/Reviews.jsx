@@ -2,23 +2,30 @@ import {useEffect, useState} from "react";
 import { useParams } from 'react-router-dom';
 
 import { List, Text } from "./Reviews.styled";
-
+import Loader from "components/Loader/Loader";
 import { ApiService } from "services/api.service";
 const apiService = new ApiService();
 
 export const Reviews = () => {
     const [reviews, setReviews] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const { movieId } = useParams();
 
     useEffect(() => {
+        setIsLoading(true);
         apiService.fetchMovieReviews(movieId).then(info => {
             setReviews(info.data.results);
+            setIsLoading(false);
         })
     }, [movieId]);
 
     return (
-        <List>
-            {reviews.length === 0
+        <>
+        {
+            isLoading
+                ?<Loader />
+                : (<List>
+                    {reviews.length === 0
                 ? <div>No reviews yet...</div>
                 : reviews.map(el => {
                 return (
@@ -27,6 +34,7 @@ export const Reviews = () => {
                         <Text>{el.content}</Text>
                     </li>)
             })}
-        </List>
+        </List>)}
+        </>
     )
 }

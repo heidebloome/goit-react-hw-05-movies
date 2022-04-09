@@ -3,13 +3,14 @@ import { Outlet, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Container } from 'components/common/Container.styled';
 import { Button } from 'components/common/Button.styled';
 import { StyledLink, Wrapper, Content, Title, SubTitle, Img, List, Item } from './MovieDetailsPage.styled';
-
+import Loader from 'components/Loader/Loader';
 import { ApiService } from 'services/api.service';
 const apiService = new ApiService();
 
 
 export const MoviesDetailsPage = () => {
   const [movie, setMovie] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,8 +19,10 @@ export const MoviesDetailsPage = () => {
   });
 
   useEffect(() => {
+    setIsLoading(true);
     apiService.fetchMovieDetails(movieId).then(info => {
       setMovie(info.data);
+      setIsLoading(false);
     });
   }, [movieId])
 
@@ -29,9 +32,12 @@ export const MoviesDetailsPage = () => {
 
   return (
     <Container>
-      <StyledLink to={goBackToLink}>&#8592; Go back</StyledLink>
-      {movie && 
-        <Wrapper>
+      {isLoading
+        ? <Loader />
+        : (<div>
+          <StyledLink to={goBackToLink}>&#8592; Go back</StyledLink>
+          {movie && 
+            <Wrapper>
           <Img src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_path}`} alt="movie poster"/>
           <Content>
             <Title>{movie.title}</Title>
@@ -50,8 +56,9 @@ export const MoviesDetailsPage = () => {
             </List>
             <Outlet/>
           </Content>
-        </Wrapper>
+            </Wrapper>
       }
-      </Container>
+        </div>)}
+    </Container>
   )
 }
