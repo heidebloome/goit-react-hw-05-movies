@@ -6,7 +6,7 @@ import ImgNotAvaliable from '../../../images/01.jpg';
 import { ApiService } from 'services/api.service';
 const apiService = new ApiService();
 
-export const HomePage = () => {
+const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -40,3 +40,5 @@ export const HomePage = () => {
       </>
   )
 }
+
+export default HomePage;

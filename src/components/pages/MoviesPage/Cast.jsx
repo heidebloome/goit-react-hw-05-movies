@@ -6,7 +6,7 @@ import ImgNotAvaliable from '../../../images/01.jpg';
 import { ApiService } from "services/api.service";
 const apiService = new ApiService();
 
-export const Cast = () => {
+const Cast = () => {
     const [cast, setCast] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const { movieId } = useParams();
@@ -47,3 +47,5 @@ export const Cast = () => {
         </>
     )
 }
+
+export default Cast;

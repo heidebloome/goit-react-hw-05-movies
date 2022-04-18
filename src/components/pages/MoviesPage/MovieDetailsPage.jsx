@@ -8,8 +8,7 @@ import ImgNotAvaliable from '../../../images/01.jpg';
 import { ApiService } from 'services/api.service';
 const apiService = new ApiService();
 
-
-export const MoviesDetailsPage = () => {
+const MoviesDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
@@ -70,3 +69,5 @@ export const MoviesDetailsPage = () => {
     </Container>
   )
 }
+
+export default MoviesDetailsPage;

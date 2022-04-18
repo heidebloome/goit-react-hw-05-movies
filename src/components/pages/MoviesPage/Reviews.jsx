@@ -5,7 +5,7 @@ import Loader from "components/Loader/Loader";
 import { ApiService } from "services/api.service";
 const apiService = new ApiService();
 
-export const Reviews = () => {
+const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const { movieId } = useParams();
@@ -41,3 +41,5 @@ export const Reviews = () => {
         </>
     )
 }
+
+export default Reviews;
