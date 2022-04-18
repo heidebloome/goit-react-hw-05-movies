@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { MoviesList } from '../../MoviesList/MoviesList';
 import { Title } from './HomePage.styled';
 import Loader from 'components/Loader/Loader';
+import ImgNotAvaliable from '../../../images/01.jpg';
 import { ApiService } from 'services/api.service';
-
 const apiService = new ApiService();
 
 export const HomePage = () => {
@@ -12,16 +12,31 @@ export const HomePage = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    apiService.fetchTrendingMovies().then(data => {
-      setMovies(data.data.results);
-      setIsLoading(false);
+    try {
+      apiService.fetchTrendingMovies().then(data => {
+        data.map(el => {
+          el.poster_path
+            ? (el.poster_path = `https://www.themoviedb.org/t/p/w440_and_h660_face${el.poster_path}`)
+            : (el.poster_path = ImgNotAvaliable);
+          return el;
+        })
+      setMovies(data);
     });
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
   }, [])
 
   return (
       <>
-        {isLoading ? <Loader /> : (<div><Title>Trending today</Title>
-        <MoviesList movies={movies}/></div>)}
+      {isLoading
+        ? <Loader />
+        : (<div>
+            <Title>Trending today</Title>
+            <MoviesList movies={movies} />
+        </div>)
+      }
       </>
   )
 }

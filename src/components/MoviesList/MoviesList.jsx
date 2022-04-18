@@ -3,11 +3,11 @@ import propTypes from 'prop-types';
 import { MovieItem } from './MovieItem';
 import { List } from './MoviesList.styled';
 
-export const MoviesList = ({movies }) => {
+export const MoviesList = ({ movies }) => {
     return (
         <List>
-            {movies.map(el => {
-                return (<MovieItem key={el.id} movie={el}/>)
+            {movies.map(movie => {
+                return (<MovieItem key={movie.id} movie={movie}/>)
             })}
         </List>
   )

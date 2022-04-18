@@ -32,6 +32,6 @@ export const Text = styled.p`
     ${props =>
     props.b &&
     css`
-      font-weight: 500;
+      font-weight: 700;
     `};
 `;

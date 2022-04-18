@@ -12,29 +12,27 @@ export const MoviesPage = () => {
   const [list, setList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchParamsQuery = searchParams.get('query');
+  const searchQuery = searchParams.get('query');
 
   useEffect(() => {
-    if (!searchParamsQuery) {
+    if (!searchQuery) {
       return;
     }
-    apiService.fetchMoviesByName(searchParamsQuery).then(info => {
-      setList(info.data.results);
-    })
-  }, [searchParamsQuery])
+    setIsLoading(true);
+    try {
+      apiService.fetchMoviesByName(searchQuery).then(data => {
+        setList(data);
+      })
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
+  }, [searchQuery])
 
   const showMovies = e => {
     e.preventDefault();
-    setIsLoading(true);
-    const query = e.target.elements.searchQuery.value.trim();
+    setSearchParams({ query: e.target.elements.searchQuery.value.trim() });
     e.target.reset();
-
-      setSearchParams({ query });
-      apiService.fetchMoviesByName(query).then(info => {
-        setList(info.data.results);
-        setIsLoading(false);
-      })
-
   }
 
   return (
