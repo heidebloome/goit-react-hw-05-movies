@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title } from './pages/HomePage/HomePage.styled';
+import { Title } from 'components/common/Title.styled';
 
 const NotFound = () => {
   return (

@@ -1,6 +1,6 @@
 import { useNavigate,useLocation } from 'react-router-dom';
 import propTypes from 'prop-types';
-import { Item, Text } from './MovieItem.styled';
+import { Item, Text } from 'components/MoviesList/MovieItem.styled';
 
 export const MovieItem = ({ movie }) => {
     const navigate = useNavigate();

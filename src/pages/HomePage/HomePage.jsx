@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { MoviesList } from '../../MoviesList/MoviesList';
-import { Title } from './HomePage.styled';
+import { MoviesList } from 'components/MoviesList/MoviesList';
+import { Title } from 'components/common/Title.styled';
 import Loader from 'components/Loader/Loader';
-import ImgNotAvaliable from '../../../images/01.jpg';
+import ImgNotAvaliable from 'images/01.jpg';
 import { ApiService } from 'services/api.service';
 const apiService = new ApiService();
 

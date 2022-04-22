@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { Nav } from "./Navigation.styled";
+import { Nav } from "components/Navigation/Navigation.styled";
 
 const Navigation = () => {
     return (

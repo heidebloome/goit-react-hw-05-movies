@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Title } from '../HomePage/HomePage.styled';
-import { Form, Input } from './MoviesPage.styled';
+import { Form, Input } from 'pages/MoviesPage/MoviesPage/MoviesPage.styled';
+import { Title } from 'components/common/Title.styled';
 import { Button } from 'components/common/Button.styled';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import Loader from 'components/Loader/Loader';
-import ImgNotAvaliable from '../../../images/01.jpg';
+import ImgNotAvaliable from 'images/01.jpg';
 import { ApiService } from 'services/api.service';
 const apiService = new ApiService();
 
@@ -38,8 +38,12 @@ const MoviesPage = () => {
 
   const showMovies = e => {
     e.preventDefault();
-    setSearchParams({ query: e.target.elements.searchQuery.value.trim() });
-    e.target.reset();
+    const searchValue = e.target.elements.searchQuery.value.trim();
+
+    if (searchValue) {
+      setSearchParams({ query: e.target.elements.searchQuery.value.trim() });
+      e.target.reset();
+    }
   }
 
   return (

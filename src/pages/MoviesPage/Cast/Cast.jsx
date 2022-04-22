@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import { useParams } from 'react-router-dom';
-import { List, Img, Text } from "./Cast.styled";
+import { List, Img, Text } from "pages/MoviesPage/Cast/Cast.styled";
 import Loader from "components/Loader/Loader";
-import ImgNotAvaliable from '../../../images/01.jpg';
+import ImgNotAvaliable from 'images/01.jpg';
 import { ApiService } from "services/api.service";
 const apiService = new ApiService();
 

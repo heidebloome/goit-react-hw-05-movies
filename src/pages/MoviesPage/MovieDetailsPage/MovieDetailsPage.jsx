@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Container } from 'components/common/Container.styled';
 import { Button } from 'components/common/Button.styled';
-import { StyledLink, Wrapper, Content, Title, SubTitle, Img, List, Item } from './MovieDetailsPage.styled';
+import { StyledLink, Wrapper, Content, Title, SubTitle, Img, List, Item } from 'pages/MoviesPage/MovieDetailsPage/MovieDetailsPage.styled';
 import Loader from 'components/Loader/Loader';
-import ImgNotAvaliable from '../../../images/01.jpg';
+import ImgNotAvaliable from 'images/01.jpg';
 import { ApiService } from 'services/api.service';
 const apiService = new ApiService();
 
